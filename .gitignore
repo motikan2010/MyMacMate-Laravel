@@ -2,6 +2,7 @@
 /public/storage
 /public/hot
 /public/stickers/*
+!README.md
 /storage/*.key
 /vendor
 /.idea
