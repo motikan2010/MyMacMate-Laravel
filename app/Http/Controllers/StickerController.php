@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Sticker;
 
 class StickerController extends Controller
 {
@@ -13,7 +15,7 @@ class StickerController extends Controller
      */
     public function index()
     {
-        //
+        return view('sticker.index');
     }
 
     /**
@@ -23,7 +25,7 @@ class StickerController extends Controller
      */
     public function create()
     {
-        //
+        return view('sticker.create');
     }
 
     /**
@@ -34,7 +36,30 @@ class StickerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, array(
+            'image_file'      =>  'required|image'
+        ));
+
+        $sticker = new Sticker();
+
+        $sticker->user_id = Auth::user()->id;
+        $sticker->name = $request->name;
+
+        // 画像の保存
+        $file = $request->file('image_file');
+        $images_path = public_path() . "/stickers";
+        $newfilename = time() . $file->getClientOriginalName();
+        $file->move($images_path, $newfilename);
+        $sticker->full_name = $newfilename;
+
+        // 高さ・幅の保存
+        list($width, $height) = getimagesize($images_path . '/' . $newfilename);
+        $sticker->height = $height;
+        $sticker->width = $width;
+
+        $sticker->save();
+
+        return redirect()->route('sticker.index');
     }
 
     /**
