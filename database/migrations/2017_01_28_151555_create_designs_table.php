@@ -16,6 +16,7 @@ class CreateDesignsTable extends Migration
         Schema::create('designs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
+            $table->integer('group_id');
             $table->integer('img_top');
             $table->integer('img_left');
             $table->float('img_height', 4, 1);
