@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Sticker;
+use \File;
 
 class StickerController extends Controller
 {
@@ -12,7 +13,7 @@ class StickerController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +21,8 @@ class StickerController extends Controller
      */
     public function index()
     {
-        return view('sticker.index');
+        $stickers = Sticker::where('user_id', Auth::user()->id)->get();
+        return view('sticker.index')->with('stickers', $stickers);
     }
 
     /**
@@ -53,12 +55,17 @@ class StickerController extends Controller
         // 画像の保存
         $file = $request->file('image_file');
         $images_path = public_path() . "/stickers";
-        $newfilename = time() . $file->getClientOriginalName();
-        $file->move($images_path, $newfilename);
-        $sticker->full_name = $newfilename;
+        $filename = $file->getClientOriginalName();
+        $newfilename = time() . "_" . md5($filename);
+        $extension = File::extension($filename);
+        $file->move($images_path, $newfilename . "." . $extension);
+
+        // ファイル名・拡張子の保存
+        $sticker->file_name = $newfilename;
+        $sticker->extension = $extension;
 
         // 高さ・幅の保存
-        list($width, $height) = getimagesize($images_path . '/' . $newfilename);
+        list($width, $height) = getimagesize($images_path . '/' . $newfilename . "." . $extension);
         $sticker->height = $height;
         $sticker->width = $width;
 

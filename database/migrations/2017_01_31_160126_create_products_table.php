@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStickersTable extends Migration
+class CreateProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateStickersTable extends Migration
      */
     public function up()
     {
-        Schema::create('stickers', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->string('name');
+            $table->integer('design_id');
             $table->string('file_name');
-            $table->string('extension');
-            $table->integer('height');
-            $table->integer('width');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateStickersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stickers');
+        Schema::dropIfExists('products');
     }
 }

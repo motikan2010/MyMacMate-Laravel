@@ -7,7 +7,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Stickers</div>
                 <div class="panel-body">
-                    
+                    @foreach($stickers as $sticker)
+                        <img src="/stickers/{{ $sticker->file_name }}.{{ $sticker->extension }}">
+                    @endforeach
                 </div>
             </div>
         </div>
