@@ -11,7 +11,10 @@
     <title>{{ config('app.name', 'MyMacMate') }}</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/original.css">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css">
+    @yield('sticker_css')
 
     <!-- Scripts -->
     <script>
@@ -42,12 +45,13 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
+                    <ul class="nav navbar-nav" style="padding-top: 7px;">
+                        @yield('create_navbar')
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
+
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Login</a></li>
@@ -83,5 +87,6 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    @yield('javascript')
 </body>
 </html>

@@ -29,11 +29,16 @@ jQuery( function() {
         console.log(text);
         if(tmp_text != ''){
             if(window.confirm('Is this Save?')){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
                 $.ajax({
                     type: 'post',
-                    url: './save.php',
+                    url: '/design',
                     data: {
-                        'message' : text
+                        'html' : text
                     },
                     success: function(){
 

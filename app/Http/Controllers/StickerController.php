@@ -21,7 +21,8 @@ class StickerController extends Controller
      */
     public function index()
     {
-        $stickers = Sticker::where('user_id', Auth::user()->id)->get();
+        $stickers = Auth::user()->stickers;
+        
         return view('sticker.index')->with('stickers', $stickers);
     }
 
@@ -56,7 +57,7 @@ class StickerController extends Controller
         $file = $request->file('image_file');
         $images_path = public_path() . "/stickers";
         $filename = $file->getClientOriginalName();
-        $newfilename = time() . "_" . md5($filename);
+        $newfilename = "sticker_" . time() . "_" . md5($filename);
         $extension = File::extension($filename);
         $file->move($images_path, $newfilename . "." . $extension);
 
