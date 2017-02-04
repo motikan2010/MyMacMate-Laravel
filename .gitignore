@@ -1,8 +1,12 @@
 /node_modules
 /public/storage
 /public/hot
+
 /public/stickers/*
 !README.md
+/public/products/*
+!README.md
+
 /storage/*.key
 /vendor
 /.idea

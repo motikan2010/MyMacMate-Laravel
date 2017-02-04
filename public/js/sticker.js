@@ -52,10 +52,12 @@ jQuery( function() {
 
     $('#scale').click(function () {
         
-        console.log(transform_param +' : ' + x + ':' + angle);
+        
     });
 
     $('#big').click(function () {
+        rotateSet(0);
+        
         var height = $('#image_' + image_num).height();
         var width = $('#image_' + image_num).width();
         height = height * 1.1;
@@ -64,6 +66,8 @@ jQuery( function() {
     });
 
     $('#small').click(function () {
+        rotateSet(0);
+
         var height = $('#image_' + image_num).height();
         var width = $('#image_' + image_num).width();
         height = height * 0.9;
@@ -79,7 +83,9 @@ jQuery( function() {
         obj.css("-ms-transform")     ||
         obj.css("-o-transform")      ||
         obj.css("transform");
+
         console.log(matrix);
+        
         if(matrix !== 'none') {
             var values = matrix.split('(')[1].split(')')[0].split(',');
             var a = values[0];
@@ -90,14 +96,8 @@ jQuery( function() {
         }
         angle = (angle < 0) ? angle +=360 : angle;
         angle += 10;
-        transform_param = "rotate(" + angle + "deg)";
-        $('#image_' + image_num).css({
-            '-webkit-transform' : transform_param,
-            '-moz-transform' : transform_param,
-            '-ms-transform' : transform_param,
-            'transform' : transform_param
-        });
-        console.log(transform_param +' : ' + x + ':' + angle);
+
+        rotateSet(angle);
     });
 
     // 左回転
@@ -108,6 +108,9 @@ jQuery( function() {
         obj.css("-ms-transform")     ||
         obj.css("-o-transform")      ||
         obj.css("transform");
+
+        console.log(matrix);
+
         if(matrix !== 'none') {
             var values = matrix.split('(')[1].split(')')[0].split(',');
             var a = values[0];
@@ -118,19 +121,16 @@ jQuery( function() {
         }
         angle = (angle < 0) ? angle +=360 : angle;
         angle -= 10;
-        transform_param = "rotate(" + angle + "deg)";
-        $('#image_' + image_num).css({
-            '-webkit-transform' : transform_param,
-            '-moz-transform' : transform_param,
-            '-ms-transform' : transform_param,
-            'transform' : transform_param
-        });
-        console.log(transform_param +' : ' + x + ':' + angle);
+
+        rotateSet(angle);
     });
 
     // 回転リセット
     $('#rotate_reset').click(function () {
-        angle = 0;
+        rotateSet(0);
+    });
+
+    function rotateSet(angle){
         transform_param = "rotate(" + angle + "deg)";
         $('#image_' + image_num).css({
             '-webkit-transform' : transform_param,
@@ -138,7 +138,7 @@ jQuery( function() {
             '-ms-transform' : transform_param,
             'transform' : transform_param
         });
-    });
+    }
 
     $("#delete").click(function () {
         $('#image_' + image_num).remove();

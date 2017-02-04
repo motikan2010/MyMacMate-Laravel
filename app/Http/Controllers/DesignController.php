@@ -74,6 +74,8 @@ class DesignController extends Controller
         $product->save();
         $product_id = $product->id;
 
+        $images_path = public_path() . "/stickers";
+        $base_image = ImageCreateFromJPEG(public_path() . '/images/base.jpg');
         foreach ($results_arr as $result) {
 
             // top、left、height、widthの格納
@@ -87,6 +89,8 @@ class DesignController extends Controller
             // 角度取得
             if(preg_match('/transform: (.*?);/', $result['style'], $transform)){
                 $result['css']['transform'] = $transform[1];
+            }else{
+                $result['css']['transform'] = 0;
             }
 
             $design = new Design();
@@ -99,10 +103,38 @@ class DesignController extends Controller
             $design->img_width = $result['css']['width'];
             $design->transform = $result['css']['transform'];
             $design->save();
+
+            if($result['css']['transform'] != NULL){
+                preg_match('/\((\d+deg)\)/', $result['css']['transform'], $angle);
+                $angle = str_replace('deg', '', $angle[1]);
+            }else{
+                $angle = 0;
+            }
+
+            $file_path = $images_path . "/" . $sticker->file_name . "." . $sticker->extension;
+            $imgFile = ImageCreateFromPNG($file_path);
+            $img_width = $result['css']['width'];;
+            $img_height = $result['css']['height'];
+            list($width, $height) = getimagesize($file_path);
+
+            $canvas = imagecreatetruecolor($img_width, $img_height);
+            imagefill($canvas , 0 , 0 , 0xFFFFFFFF);
+
+            imagecopyresized($canvas, $imgFile, 0, 0, 0, 0, $img_width, $img_height, $width, $height);
             
+            $newimg = ImageRotate($canvas, $angle, 0xFFFFFF);
+            //imagecolortransparent($newimg, 0xFFFFFF);
+            
+            imagecopy($base_image, $newimg, $result['css']['left'], $result['css']['top'],
+                0, 0, $img_width, $img_height);
         }
 
-        return $results_arr;
+        ImageJPEG($base_image, public_path() . '/images/' . "test" . '.jpg');
+
+        imagedestroy($base_image);
+        imagedestroy($newimg);
+
+        return $angle;
 
     }
 
