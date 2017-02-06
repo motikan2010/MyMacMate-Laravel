@@ -11,7 +11,7 @@ jQuery( function() {
     } );
 
     
-    // ▼画像定義
+    // 画像読み込み
     $(".image").click(function () {
         flag =false;
         var value = $(this).attr('value');
@@ -20,9 +20,11 @@ jQuery( function() {
 		var html = '<div id="image_' + image_num + '" class="ui-widget-content jquery-ui-draggable ' + value + '" style="background-color:transparent; border:0px; position:absolute;"></div>';
 		$(html).draggable({containment: '#jquery-ui-draggable-wrap',scroll: false,}).appendTo('#jquery-ui-draggable-wrap');
 		$('#image_' + image_num).css({'top': 0});
+        $('#image_' + image_num).height($('#image_' + image_num).height());
+        $('#image_' + image_num).width($('#image_' + image_num).width());
     });
-    // ▲画像定義
 
+    // セーブ
     $("#save").click(function(){
         var text = $("#jquery-ui-draggable-wrap").html();
         var tmp_text = text.replace(/\s+/g, "");
@@ -55,25 +57,27 @@ jQuery( function() {
         
     });
 
+    // 拡大
     $('#big').click(function () {
         rotateSet(0);
-        
-        var height = $('#image_' + image_num).height();
-        var width = $('#image_' + image_num).width();
-        height = height * 1.1;
-        width = width * 1.1;
-        $('#image_' + image_num).css({'height':height, 'width':width});
+        resizeImage(1.1);
     });
 
+    // 縮小
     $('#small').click(function () {
         rotateSet(0);
+        resizeImage(0.9);
+    });
+
+    // 画像サイズ変更
+    function resizeImage(_size_rate){
 
         var height = $('#image_' + image_num).height();
         var width = $('#image_' + image_num).width();
-        height = height * 0.9;
-        width = width * 0.9;
+        height = height * _size_rate;
+        width = width * _size_rate;
         $('#image_' + image_num).css({'height':height, 'width':width});
-    });
+    }
 
     // 右回転
     $('#rotate_right').click(function () {

@@ -85,6 +85,9 @@
         @yield('content')
     </div>
 
+    <footer class="footer">
+        <center><p class="text-muted"><a href="https://twitter.com/motikan2010" target="_blank">@motikan2010</a> 2014-</p></center>
+    </footer>
     <!-- Scripts -->
     <script src="/js/app.js"></script>
     @yield('javascript')

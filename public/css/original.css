@@ -1,12 +1,12 @@
 #jquery-ui-draggable-wrap {
-    width: 1119px;
-    height: 765px;
-    padding: 0;
-    margin: 0;
-    border-style: dashed;
-    border-radius: 10px;
-    background-image: url("/images/base.jpg");
-    background-repeat: no-repeat;
+  width: 1119px;
+  height: 765px;
+  padding: 0;
+  margin: 0;
+  border-style: dashed;
+  border-radius: 10px;
+  background-image: url("/images/base.jpg");
+  background-repeat: no-repeat;
 }
 
 .jquery-ui-draggable,
@@ -18,4 +18,10 @@
     -o-background-size:cover;
     -ms-background-size:cover;
     background-size:cover;
+}
+
+.footer {
+  bottom: 0;
+  width: 100%;
+  height: 30px;
 }

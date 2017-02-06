@@ -68,9 +68,12 @@ class DesignController extends Controller
             TODO Validation Check
         */
 
+        $user_id = Auth::user()->id;
+        $file_name = "product_" . $user_id . "_" . md5($user_id . time());
+
         $product = new Product();
-        $product->user_id = Auth::user()->id;
-        $product->file_name = "Sample"; // TODO
+        $product->user_id = $user_id;
+        $product->file_name = $file_name;
         $product->save();
         $product_id = $product->id;
 
@@ -122,14 +125,14 @@ class DesignController extends Controller
 
             imagecopyresized($canvas, $imgFile, 0, 0, 0, 0, $img_width, $img_height, $width, $height);
             
-            $newimg = ImageRotate($canvas, $angle, 0xFFFFFF);
-            //imagecolortransparent($newimg, 0xFFFFFF);
+            $newimg = ImageRotate($canvas, -($angle),
+                imagecolorallocate($canvas, 255, 255, 255));
             
             imagecopy($base_image, $newimg, $result['css']['left'], $result['css']['top'],
                 0, 0, $img_width, $img_height);
         }
 
-        ImageJPEG($base_image, public_path() . '/images/' . "test" . '.jpg');
+        ImageJPEG($base_image, public_path() . '/products/' . $file_name . '.jpg');
 
         imagedestroy($base_image);
         imagedestroy($newimg);
@@ -146,7 +149,17 @@ class DesignController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        $designs = $product->designs;
+
+        $stickers = Auth::user()->stickers;
+
+        $data = [
+            'designs' => $designs,
+            'stickers' => $stickers
+        ];
+
+        return view('design.show')->with($data);
     }
 
     /**
