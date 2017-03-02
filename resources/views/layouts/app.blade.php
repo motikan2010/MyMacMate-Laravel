@@ -45,11 +45,13 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav" style="">
-                        @if(Auth::check())
+                    <ul class="nav navbar-nav">
+                    @if(Auth::check() && Route::currentRouteName() != 'design.create')
                         <li><a href="{{ url('/design') }}">Design</a></li>
                         <li><a href="{{ url('/sticker') }}">Sticker</a></li>
-                        @endif
+                    @endif
+                    </ul>
+                    <ul class="nav navbar-nav" style="padding-top: 7px;">
                         @yield('create_navbar')
                     </ul>
 
