@@ -29,11 +29,11 @@ class User extends Authenticatable
 
     public function stickers()
     {
-        return $this->hasMany('App\Sticker');
+        return $this->hasMany('App\Sticker')->orderBy('created_at', 'desc');;
     }
 
     public function products()
     {
-        return $this->hasMany('App\Product');
+        return $this->hasMany('App\Product')->orderBy('created_at', 'desc');
     }
 }

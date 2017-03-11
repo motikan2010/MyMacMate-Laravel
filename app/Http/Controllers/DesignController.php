@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Intervention\Image\Facades\Image;
 use Goutte\Client;
 
 use App\Sticker;
@@ -26,6 +25,7 @@ class DesignController extends Controller
     public function index()
     {
         $products = Auth::user()->products;
+
         return view('design.index')->with('products', $products);
     }
 
@@ -126,6 +126,9 @@ class DesignController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
+        if(Auth::user()->id != $product->user_id){
+            return redirect('design');
+        }
         $designs = $product->designs;
 
         $stickers = Auth::user()->stickers;

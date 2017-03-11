@@ -19,9 +19,10 @@
     <button href="#" class="dropdown-toggle btn" data-toggle="dropdown">On Sticker<span class="caret"></span></button>
     <ul class="dropdown-menu scrollable-menu" style="text-align: center;">
     @foreach($stickers as $sticker)
-    <li><a class="image" value="{{ $sticker->file_name }}">{{ $sticker->name }}</a></li>
+        <li><a class="image" value="{{ $sticker->file_name }}">{{ $sticker->name }}</a></li>
     @endforeach
     </ul>
+    <button id="delete" class="btn btn-warning">Delete</button>
     <button class="btn btn-success glyphicon glyphicon-camera" onclick="screenshot()">Take</button>
 </li>
 @endsection
