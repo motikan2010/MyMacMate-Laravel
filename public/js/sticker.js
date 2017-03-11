@@ -73,18 +73,17 @@ jQuery( function() {
 
     // 画像サイズ変更
     function resizeImage(_size_rate){
-
         var height = $('#image_' + image_num).height();
         var width = $('#image_' + image_num).width();
         height = height * _size_rate;
         width = width * _size_rate;
-        $('#image_' + image_num).css({'height':height, 'width':width});
+        $('#image_' + image_num).animate({'height':height, 'width':width}, 200);
     }
 
     // 右回転
     $('#rotate_right').click(function () {
-    	var obj = $('#image_' + image_num);
-    	var matrix = obj.css("-webkit-transform") ||
+        var obj = $('#image_' + image_num);
+        var matrix = obj.css("-webkit-transform") ||
         obj.css("-moz-transform")    ||
         obj.css("-ms-transform")     ||
         obj.css("-o-transform")      ||

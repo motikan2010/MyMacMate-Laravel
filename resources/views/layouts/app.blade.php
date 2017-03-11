@@ -13,7 +13,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/original.css">
-    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css">
     @yield('sticker_css')
 
     <!-- Scripts -->
@@ -25,7 +25,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-default navbar-fixed-top" style="">
             <div class="container">
                 <div class="navbar-header">
 
@@ -87,7 +87,7 @@
                 </div>
             </div>
         </nav>
-
+        <div style="height:70px;"></div>
         @yield('content')
     </div>
 
