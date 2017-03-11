@@ -25,3 +25,11 @@
   width: 100%;
   height: 30px;
 }
+
+#download,
+#download:hover,
+#download:visited,
+#download:active {
+  text-decoration: none;
+  color: #ffffff;
+}

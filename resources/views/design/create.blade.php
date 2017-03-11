@@ -22,7 +22,7 @@
     <li><a class="image" value="{{ $sticker->file_name }}">{{ $sticker->name }}</a></li>
     @endforeach
     </ul>
-    <button id="save" class="btn btn-success span1">Save</button>
+    <button class="btn btn-success glyphicon glyphicon-camera" onclick="screenshot()">Take</button>
 </li>
 @endsection
 
@@ -32,20 +32,36 @@
         <div class="col-md-12 col-md-offset-0">
             <div class="panel panel-default">
                 <div id="jquery-ui-draggable-wrap" class="row-fluid ui-widget-content" style="position:relative; border: inset 0px;">
-                    
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- TakeView -->
+<div class="remodal-bg"></div>
+<div class="remodal" data-remodal-id="modal">
+    <div id="output_screen">
+        <img width="100%" height="100%" id="screen_image">
+    </div>
+    <hr />
+  <br>
+  <button  data-remodal-action="cancel" onclick="erase_screenshot()" class="remodal-cancel">Cancel</button>
+  <a id="download" class="remodal-confirm" href="#" download="test.png">Loading...</a>
+  <button id="save" class="remodal-primary">Save</button>
+</div>
 @endsection
 
 @section('javascript')
 <script src="/js/jquery-ui.min.js"></script>
+<script src="/js/html2canvas.js"></script>
 <script src="/js/sticker.js"></script>
+<script src="/js/remodal.js"></script>
 @endsection
 
 @section('sticker_css')
+<link rel="stylesheet" href="/css/remodal.css">
+<link rel="stylesheet" href="/css/remodal-default-theme.css">
 <style type="text/css">
 @foreach($stickers as $sticker)
 /* {{ $sticker->name }} */

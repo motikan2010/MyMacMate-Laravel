@@ -15,11 +15,11 @@ jQuery( function() {
     $(".image").click(function () {
         flag =false;
         var value = $(this).attr('value');
-    	image_num++;
+        image_num++;
         console.log(value);
-		var html = '<div id="image_' + image_num + '" class="ui-widget-content jquery-ui-draggable ' + value + '" style="background-color:transparent; border:0px; position:absolute;"></div>';
-		$(html).draggable({containment: '#jquery-ui-draggable-wrap',scroll: false,}).appendTo('#jquery-ui-draggable-wrap');
-		$('#image_' + image_num).css({'top': 0});
+        var html = '<div id="image_' + image_num + '" class="ui-widget-content jquery-ui-draggable ' + value + '" style="background-color:transparent; border:0px; position:absolute;"></div>';
+        $(html).draggable({containment: '#jquery-ui-draggable-wrap',scroll: false,}).appendTo('#jquery-ui-draggable-wrap');
+        $('#image_' + image_num).css({'top': 0});
         $('#image_' + image_num).height($('#image_' + image_num).height());
         $('#image_' + image_num).width($('#image_' + image_num).width());
     });
@@ -27,6 +27,7 @@ jQuery( function() {
     // セーブ
     $("#save").click(function(){
         var text = $("#jquery-ui-draggable-wrap").html();
+        var base64Image = $('#screen_image')[0].src;
         var tmp_text = text.replace(/\s+/g, "");
         console.log(text);
         if(tmp_text != ''){
@@ -40,7 +41,8 @@ jQuery( function() {
                     type: 'post',
                     url: '/design',
                     data: {
-                        'html' : text
+                        'html' : text,
+                        'base64Image' : base64Image
                     },
                     success: function(){
 
@@ -152,3 +154,23 @@ jQuery( function() {
     });
 
 } );
+
+function screenshot() {
+    var element = $("#jquery-ui-draggable-wrap");
+    // 画像の生成
+    html2canvas(element, { onrendered: function(canvas) {
+        var imgData = canvas.toDataURL();
+        $('#screen_image')[0].src = imgData;
+        $('#download')[0].href = imgData;
+        $('#download')[0].innerHTML = "Download";
+    }});
+    // ポップアップの表示
+    $('[data-remodal-id=modal]').remodal().open();
+}
+
+// 生成画像の削除
+function erase_screenshot() {
+    $('#screen_image')[0].src = "";
+    $('#download')[0].href = "#";
+    $('#download')[0].innerHTML = "";
+}

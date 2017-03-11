@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 use Goutte\Client;
 
 use App\Sticker;
@@ -24,7 +25,8 @@ class DesignController extends Controller
      */
     public function index()
     {
-        return view('design.index');
+        $products = Auth::user()->products;
+        return view('design.index')->with('products', $products);
     }
 
     /**
@@ -51,7 +53,11 @@ class DesignController extends Controller
 
         $delete_words = ["ui-widget-content","jquery-ui-draggable","ui-draggable"];
         $html = str_replace($delete_words, "", $request->html);
+        $base64Image = str_replace('data:image/png;base64,', '', $request->base64Image);
+        $image = str_replace(' ', '+', $base64Image);
+        $image = base64_decode($base64Image);
 
+        // Goutte
         $client = new Client();
         $crawler = $client->request('HEAD', null);
         $crawler->clear();
@@ -70,6 +76,7 @@ class DesignController extends Controller
 
         $user_id = Auth::user()->id;
         $file_name = "product_" . $user_id . "_" . md5($user_id . time());
+        file_put_contents(public_path() . "/products/" . $file_name . ".png", $image);
 
         $product = new Product();
         $product->user_id = $user_id;
@@ -77,8 +84,6 @@ class DesignController extends Controller
         $product->save();
         $product_id = $product->id;
 
-        $images_path = public_path() . "/stickers";
-        $base_image = ImageCreateFromJPEG(public_path() . '/images/base.jpg');
         foreach ($results_arr as $result) {
 
             // top、left、height、widthの格納
@@ -106,38 +111,9 @@ class DesignController extends Controller
             $design->img_width = $result['css']['width'];
             $design->transform = $result['css']['transform'];
             $design->save();
-
-            if($result['css']['transform'] != NULL){
-                preg_match('/\((\d+deg)\)/', $result['css']['transform'], $angle);
-                $angle = str_replace('deg', '', $angle[1]);
-            }else{
-                $angle = 0;
-            }
-
-            $file_path = $images_path . "/" . $sticker->file_name . "." . $sticker->extension;
-            $imgFile = ImageCreateFromPNG($file_path);
-            $img_width = $result['css']['width'];;
-            $img_height = $result['css']['height'];
-            list($width, $height) = getimagesize($file_path);
-
-            $canvas = imagecreatetruecolor($img_width, $img_height);
-            imagefill($canvas , 0 , 0 , 0xFFFFFFFF);
-
-            imagecopyresized($canvas, $imgFile, 0, 0, 0, 0, $img_width, $img_height, $width, $height);
-            
-            $newimg = ImageRotate($canvas, -($angle),
-                imagecolorallocate($canvas, 255, 255, 255));
-            
-            imagecopy($base_image, $newimg, $result['css']['left'], $result['css']['top'],
-                0, 0, $img_width, $img_height);
         }
 
-        ImageJPEG($base_image, public_path() . '/products/' . $file_name . '.jpg');
-
-        imagedestroy($base_image);
-        imagedestroy($newimg);
-
-        return $angle;
+        return 1;
 
     }
 
