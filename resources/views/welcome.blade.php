@@ -45,9 +45,10 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12 col-md-offset-0">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div id="jquery-ui-draggable-wrap" class="row-fluid ui-widget-content" style="position:relative; border: inset 0px;">
+                <img src="/images/base.jpg" class="img-responsive">
                   <div class="ui-widget-content jquery-ui-draggable d" style="background-color:transparent; border:0px; position:absolute; top:20px; left:40px;"></div>
                   <div class="ui-widget-content jquery-ui-draggable e" style="background-color:transparent; border:0px; position:absolute; top:50px; left:200px;"></div>
                   <div class="ui-widget-content jquery-ui-draggable m" style="background-color:transparent; border:0px; position:absolute; top:70px; left:550px;"></div>
