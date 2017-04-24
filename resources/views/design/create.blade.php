@@ -33,6 +33,7 @@
         <div class="col-md-12 col-md-offset-0">
             <div class="panel panel-default">
                 <div id="jquery-ui-draggable-wrap" class="row-fluid ui-widget-content" style="position:relative; border: inset 0px;">
+                    <img src="/images/base.jpg" class="img-responsive">
                 </div>
             </div>
         </div>

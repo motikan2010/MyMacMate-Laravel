@@ -14,7 +14,7 @@
             @endif
                 <div class="col-md-6" style="padding: 20px;">
                     <img width="100%" src="/products/{{ $product->file_name }}.png">
-                    <p>{{ $product->created_at->format('Y年m月d日') }}</p>
+                    <h4>{{ $product->created_at->format('Y-m-d') }}</h4>
                 </div>
             @if($i == 1 || $i % 2 == 1)
             </div>

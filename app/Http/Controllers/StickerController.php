@@ -45,7 +45,7 @@ class StickerController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, array(
-            'image_file'      =>  'required|image'
+            'image_file' => 'required|image'
         ));
 
         $sticker = new Sticker();
@@ -110,13 +110,21 @@ class StickerController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 画像データの削除
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $sticker = Sticker::find($id);
+        if($sticker->user_id == Auth::user()->id){
+            // 画像ファイルの削除
+            File::delete(public_path() . "/stickers/" .
+                $sticker->file_name . "." . $sticker->extension);
+            // 画像データの削除
+            $sticker->delete();
+        }
+        return redirect()->route('sticker.index');
     }
 }
