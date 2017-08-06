@@ -47,8 +47,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                     @if(Auth::check() && Route::currentRouteName() != 'design.create')
-                        <li><a href="{{ url('/design') }}">Design</a></li>
-                        <li><a href="{{ url('/sticker') }}">Sticker</a></li>
+                        <li><a href="{{ url('/design') }}">Show Pictures</a></li>
+                        <li><a href="{{ url('/sticker') }}">Show Stickers</a></li>
                     @endif
                     </ul>
                     <ul class="nav navbar-nav" style="padding-top: 7px;">
@@ -60,8 +60,8 @@
 
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
+                            <li><a href="{{ url('/login') }}">Sign in</a></li>
+                            <li><a href="{{ url('/register') }}">sign up</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
