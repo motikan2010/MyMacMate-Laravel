@@ -16,11 +16,9 @@ class DesignController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
-    
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return $this
      */
     public function index()
     {
@@ -30,9 +28,7 @@ class DesignController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return $this
      */
     public function create()
     {
@@ -43,10 +39,8 @@ class DesignController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return int
      */
     public function store(Request $request)
     {
@@ -118,10 +112,8 @@ class DesignController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function show($id)
     {
@@ -142,10 +134,7 @@ class DesignController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
      */
     public function edit($id)
     {
@@ -153,11 +142,8 @@ class DesignController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
      */
     public function update(Request $request, $id)
     {
@@ -165,10 +151,7 @@ class DesignController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
      */
     public function destroy($id)
     {

@@ -22,3 +22,5 @@ Route::get('/home', 'HomeController@index');
 Route::resource('sticker', 'StickerController');
 Route::resource('design', 'DesignController');
 
+Route::get('auth/twitter', 'Auth\TwitterAuthController@redirectToProvider');
+Route::get('auth/twitter/callback', 'Auth\TwitterAuthController@handleProviderCallback');
