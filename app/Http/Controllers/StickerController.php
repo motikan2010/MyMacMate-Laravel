@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Sticker;
+use App\Http\Models\Sticker;
 use \File;
 
 class StickerController extends Controller
@@ -15,7 +15,7 @@ class StickerController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * 画像一覧画面
      *
      * @return \Illuminate\Http\Response
      */
@@ -27,7 +27,7 @@ class StickerController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 画像アップロード画面
      *
      * @return \Illuminate\Http\Response
      */
@@ -37,7 +37,7 @@ class StickerController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 画像データの新規作成
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -127,4 +127,5 @@ class StickerController extends Controller
         }
         return redirect()->route('sticker.index');
     }
+
 }

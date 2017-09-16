@@ -64,5 +64,19 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">SNS Authentication</div>
+                <div class="panel-body">
+                    <div class="col-md-5 col-md-offset-3">
+                        <a class="btn btn-block btn-social btn-twitter"  href="/twitter/auth">
+                            <span class="fa fa-twitter"></span> Sign in with Twitter
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
