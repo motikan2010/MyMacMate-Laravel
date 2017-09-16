@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'sns_type', 'sns_id',
     ];
 
     /**
@@ -27,13 +27,24 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * ユーザが保持しているステッカーを全て取得
+     *
+     * @return mixed
+     */
     public function stickers()
     {
-        return $this->hasMany('App\Sticker')->orderBy('created_at', 'desc');;
+        return $this->hasMany('App\Http\Models\Sticker')->orderBy('created_at', 'desc');;
     }
 
+    /**
+     * ユーザが保持しているプロダクトを全て取得
+     *
+     * @return mixed
+     */
     public function products()
     {
-        return $this->hasMany('App\Product')->orderBy('created_at', 'desc');
+        return $this->hasMany('App\Http\Models\Product')->orderBy('created_at', 'desc');
     }
+
 }

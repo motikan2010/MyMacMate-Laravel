@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Sticker;
+use App\Http\Models\Sticker;
 use \File;
 
 class StickerController extends Controller
@@ -127,4 +127,5 @@ class StickerController extends Controller
         }
         return redirect()->route('sticker.index');
     }
+
 }

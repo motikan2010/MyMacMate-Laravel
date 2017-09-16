@@ -38,7 +38,7 @@ return [
     'twitter' => [
         'client_id' => env('CONSUMER_KEY'),
         'client_secret' => env('CONSUMER_SECRET'),
-        'redirect' => env('OAUTH_CALLBACK_HOST') . '/auth/twitter/callback',
+        'redirect' => env('OAUTH_CALLBACK_HOST') . '/twitter/callback',
     ],
 
 ];

@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Goutte\Client;
 
-use App\Sticker;
-use App\Design;
-use App\Product;
+use App\Http\Models\Sticker;
+use App\Http\Models\Design;
+use App\Http\Models\Product;
+use Symfony\Component\DomCrawler\Crawler;
 
 class DesignController extends Controller
 {
@@ -51,12 +51,10 @@ class DesignController extends Controller
         $image = str_replace(' ', '+', $base64Image);
         $image = base64_decode($base64Image);
 
-        // Goutte
-        $client = new Client();
-        $crawler = $client->request('HEAD', null);
+        // HTMLパース
+        $crawler = new Crawler(null);
         $crawler->clear();
         $crawler->addHtmlContent($html);
-        $results_arr = [];
         $results_arr = $crawler->filter('div')->each(function ($node) {
             return [
                 'class' => trim($node->attr('class')),
@@ -157,4 +155,5 @@ class DesignController extends Controller
     {
         //
     }
+
 }
