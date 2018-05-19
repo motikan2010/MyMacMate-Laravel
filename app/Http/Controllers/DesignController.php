@@ -39,6 +39,8 @@ class DesignController extends Controller
     }
 
     /**
+     * シールデザインの保存
+     *
      * @param Request $request
      * @return int
      */
@@ -48,7 +50,6 @@ class DesignController extends Controller
         $delete_words = ["ui-widget-content","jquery-ui-draggable","ui-draggable"];
         $html = str_replace($delete_words, "", $request->html);
         $base64Image = str_replace('data:image/png;base64,', '', $request->base64Image);
-        $image = str_replace(' ', '+', $base64Image);
         $image = base64_decode($base64Image);
 
         // HTMLパース
@@ -70,14 +71,16 @@ class DesignController extends Controller
         $file_name = "product_" . $user_id . "_" . md5($user_id . time());
         file_put_contents(public_path() . "/products/" . $file_name . ".png", $image);
 
+        // シールデザインペーパーの保存
         $product = new Product();
         $product->user_id = $user_id;
         $product->file_name = $file_name;
+        $product->private_flag = true;
         $product->save();
         $product_id = $product->id;
 
+        // シールデザインペーパー構成要素の保存
         foreach ($results_arr as $result) {
-
             // top、left、height、widthの格納
             $property_arr = ['top', 'left',  'height', 'width'];
             foreach ($property_arr as $property) {
@@ -117,6 +120,7 @@ class DesignController extends Controller
     {
         $product = Product::find($id);
         if(Auth::user()->id != $product->user_id){
+            // ログイン中ユーザのシールデザインではない場合
             return redirect('design');
         }
         $designs = $product->designs;

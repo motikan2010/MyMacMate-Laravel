@@ -7,9 +7,13 @@
 /public/products/*
 !README.md
 
+/resources/views/layouts/analytics.blade.php
+
 /storage/*.key
 /vendor
 /.idea
 Homestead.json
 Homestead.yaml
 .env
+.DS_Store
+g
