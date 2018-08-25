@@ -5,7 +5,7 @@
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <a class="btn btn-primary" href="{{ url('/sticker/create') }}">Upload Sticker</a>
+                <a class="btn btn-primary" href="/sticker/create">Upload Sticker</a>
             </div>
             <?php $i = 0; ?>
             @foreach($stickers as $sticker)
