@@ -40,7 +40,7 @@
           </button>
 
           <!-- Branding Image -->
-          <a class="navbar-brand" href="{{ url('/') }}">
+          <a class="navbar-brand" href="/">
             {{ config('app.name', 'MyMacMate') }}
           </a>
         </div>
@@ -50,8 +50,8 @@
           <ul class="nav navbar-nav">
           @if(Auth::check() && Route::currentRouteName() != 'design.create')
             {{-- Login state  --}}
-            <li><a href="{{ url('/design') }}">Sticker Designs</a></li>
-            <li><a href="{{ url('/sticker') }}">Stickers</a></li>
+            <li><a href="/design">Sticker Designs</a></li>
+            <li><a href="/sticker">Stickers</a></li>
           @endif
           </ul>
           <ul class="nav navbar-nav" style="padding-top: 7px;">
@@ -64,9 +64,9 @@
             <!-- Authentication Links -->
             @if (Auth::guest())
               {{-- Guest state  --}}
-              <li><a href="{{ url('/design/other') }}">Other Designs</a></li>
-              <li><a href="{{ url('/login') }}">Sign in</a></li>
-              <li><a href="{{ url('/register') }}">sign up</a></li>
+              <li><a href="/design/other">Other Designs</a></li>
+              <li><a href="/login">Sign in</a></li>
+              <li><a href="/register">sign up</a></li>
             @else
               {{-- Login state  --}}
               <li class="dropdown">
@@ -75,15 +75,15 @@
                 </a>
 
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="{{ url('/design/other') }}">Other Designs</a></li>
+                  <li><a href="/register">Other Designs</a></li>
                   <li>
-                    <a href="{{ url('/logout') }}"
+                    <a href="/logout"
                       onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();">
                       Logout
                     </a>
 
-                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                    <form id="logout-form" action="/logout" method="POST" style="display: none;">
                       {{ csrf_field() }}
                     </form>
                   </li>
