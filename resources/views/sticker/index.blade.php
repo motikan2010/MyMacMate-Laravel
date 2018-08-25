@@ -20,7 +20,7 @@
                         </div>
                         <div class="col-md-6">
                             <!-- Delete -->
-                            <form action="/stickers/{{ $sticker->id }}" method="post">
+                            <form action="/sticker/{{ $sticker->id }}" method="post">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete Image?');">Delete</button>
                                 {{ csrf_field() }}
