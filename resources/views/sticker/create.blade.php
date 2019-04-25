@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Create Sticker</div>
                 <div class="panel-body">
-                    <form action="{{ route('sticker.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="/sticker" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="Name">Name</label>
                             <input type="text" name="name" class="form-control" id="Name" placeholder="Name">

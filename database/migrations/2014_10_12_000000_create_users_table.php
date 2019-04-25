@@ -14,10 +14,18 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
+            // ユーザID
             $table->increments('id');
+            // ユーザ名
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
+            // メールアドレス・ログイン時に利用
+            $table->string('email')->unique()->nullable();
+            // パスワード
+            $table->string('password')->nullable();
+            // oauth認証のサイト区分 0:oauthなし 1:Twitter
+            $table->tinyInteger('sns_type');
+            // oauth認証ユーザID
+            $table->integer('sns_id')->unsigned()->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

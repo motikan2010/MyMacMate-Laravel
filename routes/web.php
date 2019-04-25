@@ -20,5 +20,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::resource('sticker', 'StickerController');
+
+Route::get('/design/other', 'PublicController@showAll');
 Route::resource('design', 'DesignController');
 
+Route::get('twitter/login', 'Auth\TwitterAuthController@login');
+Route::get('twitter/auth', 'Auth\TwitterAuthController@auth');
+Route::get('twitter/callback', 'Auth\TwitterAuthController@callback');
