@@ -7,9 +7,8 @@
       <div class="panel-heading">
         <a class="btn btn-primary" href="{{ url('/sticker/create') }}">Upload Sticker</a>
       </div>
-        <?php $i = 0; ?>
-      @foreach($stickers as $sticker)
-        @if($i == 0 || $i % 2 == 0)
+      @foreach( $stickers as $sticker )
+        @if( $loop->index == 0 || $loop->index % 2 == 0 )
           <div class="row">
         @endif
             <div class="col-md-6" style="padding: 20px;">
@@ -28,10 +27,9 @@
                 </div>
               </div>
             </div>
-            @if($i == 1 || $i % 2 == 1)
+            @if( $loop->index == 1 || $loop->index % 2 == 1 )
           </div>
             @endif
-            <?php $i++; ?>
       @endforeach
     </div>
   </div>
