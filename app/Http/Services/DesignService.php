@@ -34,16 +34,29 @@ class DesignService
     }
 
     /**
-     * シールデザインのプライベートフラグの更新
+     * デザインの公開状態の変更
      *
-     * @param $product Product シールデザイン
-     * @param $private_flag bool プライベートフラグ
-     * @return bool
+     * @param int $productId デザインID
+     * @param int $userId ユーザID
+     * @return array 結果配列
      */
-    public function updatePrivateState($product, $private_flag)
+    public function updatePublicStatus(int $productId, int $userId)
     {
-        $product->private_flag = $private_flag;
+        $product = Product::find($productId);
+        if ( $product->user_id !== $userId ) {
+            // 指定された会員IDとデザインの会員IDが一致しない
+            return [
+                'success' => false,
+                'public_flag' => $product->private_flag,
+            ];
+        }
+
+        $product->private_flag = !($product->private_flag);
         $product->save();
-        return true;
+
+        return [
+            'success' => true,
+            'public_flag' => $product->private_flag === false,
+        ];
     }
 }

@@ -15,15 +15,16 @@ Route::get('/', function () {
     return view('index');
 });
 
-Auth::routes();
+Route::get('/', 'TopController@index');
 
-Route::get('/home', 'HomeController@index');
+Auth::routes();
 
 Route::resource('sticker', 'StickerController');
 
-Route::get('/design/list', 'DesignController@showAll');
 Route::get('/design/my', 'DesignController@showMyAll');
+Route::post('/design/change-public', 'DesignController@changePublicStatus');
 Route::resource('design', 'DesignController');
+
 
 Route::get('twitter/login', 'Auth\TwitterAuthController@login');
 Route::get('twitter/auth', 'Auth\TwitterAuthController@auth');

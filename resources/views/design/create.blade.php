@@ -12,8 +12,8 @@
 @section('content')
 <div class="container">
   <div class="row">
-    <div class="mx-auto center-block">
-      <div id="input-canvas" class="center-block"></div>
+    <div class="mx-auto">
+      <div id="input-canvas" class=""></div>
     </div>
   </div>
 </div>
@@ -62,7 +62,3 @@
 <link rel="stylesheet" href="/css/remodal.css">
 <link rel="stylesheet" href="/css/remodal-default-theme.css">
 @endsection
-
-
-
-

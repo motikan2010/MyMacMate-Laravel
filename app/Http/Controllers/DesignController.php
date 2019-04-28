@@ -14,7 +14,7 @@ class DesignController extends Controller
     private $designService;
 
     public function __construct(DesignService $designService){
-        $this->middleware('auth')->except(['showAll']);
+        $this->middleware('auth')->except(['index']);
         $this->designService = $designService;
     }
 
@@ -23,23 +23,13 @@ class DesignController extends Controller
      */
     public function index()
     {
-        $products = Auth::user()->products;
-
-        return view('design.index')->with('products', $products);
-    }
-
-    /**
-     * @return View
-     */
-    public function showAll()
-    {
         $products = Product::where('private_flag', false)->orderBy('created_at', 'desc')->get();
 
         $data = [
             'products' => $products,
         ];
 
-        return view('design.list')->with($data);
+        return view('design.index')->with($data);
     }
 
     /**
@@ -47,13 +37,9 @@ class DesignController extends Controller
      */
     public function showMyAll()
     {
-        $products = Product::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        $products = Auth::user()->products;
 
-        $data = [
-            'products' => $products,
-        ];
-
-        return view('design.my_list')->with($data);
+        return view('design.my_list')->with('products', $products);
     }
 
     /**
@@ -88,7 +74,7 @@ class DesignController extends Controller
     {
         $product = Product::find($id);
         if(Auth::user()->id != $product->user_id){
-            // ログイン中ユーザのシールデザインではない場合
+            // ログイン中ユーザのデザインではない場合
             return redirect('design');
         }
         $designs = $product->designs;
@@ -114,25 +100,10 @@ class DesignController extends Controller
 
     /**
      * @param Request $request
-     * @param $id
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $product = Product::find($id);
-        if(Auth::user()->id != $product->user_id){
-            // ログイン中ユーザのシールデザインではない場合
-            return redirect('design');
-        }
 
-        // プライベートフラグの更新
-        $private_flag = $request->input('private_flag');
-        if (isset($private_flag)) {
-            $this->designService->updatePrivateState($product, true);
-        } else {
-            $this->designService->updatePrivateState($product, false);
-        }
-
-        return redirect('design/' . $id);
     }
 
     /**
@@ -143,4 +114,20 @@ class DesignController extends Controller
         //
     }
 
+    /**
+     * 公開状態の変更
+     *
+     * @param Request $request POSTリクエスト
+     * @return array レスポンスJSON
+     */
+    public function changePublicStatus(Request $request)
+    {
+        $productId = $request->input('product_id');
+        $userId = Auth::user()->id;
+
+        // 公開情報の更新
+        $resultArray = $this->designService->updatePublicStatus($productId, $userId);
+
+        return $resultArray;
+    }
 }

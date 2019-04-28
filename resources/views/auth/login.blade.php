@@ -3,7 +3,7 @@
 @section('content')
   <div class="container">
     <div class="row">
-      <aside class="col-md-4 offset-sm-4">
+      <aside class="col-md-4 offset-md-4">
         <div class="card">
           <article class="card-body">
             <a href="/register" class="float-right btn btn-outline-primary">Sign up</a>

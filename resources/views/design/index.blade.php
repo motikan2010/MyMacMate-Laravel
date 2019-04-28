@@ -1,25 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-  <div class="col-md-10 col-md-offset-1">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <a class="btn btn-primary" href="/design/create">Create</a>
-      </div>
-      @foreach($products as $product)
-        @if($loop->index == 0 || $loop->index % 2 == 0)
-          <div class="row">
-        @endif
-            <div class="col-md-6" style="padding: 20px;">
-              <img width="100%" src="/images/products/{{ $product->file_name }}.png">
-              <h4>{{ $product->created_at->format('Y-m-d') }}</h4>
+  <div class="container">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        @foreach($products as $product)
+          @if( $loop->first || $loop->index % 3 == 0 )
+            <div class="row">
+              @endif
+              <div class="col-md-4">
+                <img width="100%" src="/image/product/{{ $product->file_name }}.png">
+                <span>{{ $product->created_at->format('Y-m-d') }}</span>
+              </div>
+              @if($loop->last || $loop->index % 3 == 2)
             </div>
-        @if($loop->index == 1 || $loop->index % 2 == 1)
-          </div>
+          @endif
+        @endforeach
+        @if( count($products) === 0)
+          <span>None Data...</span>
         @endif
-      @endforeach
+      </div>
     </div>
   </div>
-</div>
 @endsection
