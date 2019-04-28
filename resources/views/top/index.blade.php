@@ -37,38 +37,16 @@
 <!-- 画像選択モーダル -->
 <div class="remodal" data-remodal-id="select-sticker-modal">
   <div class="row pb-1">
+    @foreach($stickers as $sticker)
     <div class="col-md-3">
       <button class="card" data-remodal-action="cancel" onclick="addSticker('/image/demo_sticker/d.png')">
-        <img class="card-img-top" src="/image/demo_sticker/d.png" alt="Demo D">
+        <img class="card-img-top" src="/image/demo_sticker/{{ $sticker[0] }}.png" alt="Demo D">
         <div class="card-body p-2">
-          <p class="card-title m-1">Sticker "D"</p>
+          <p class="card-title m-1">{{ $sticker[1] }}</p>
         </div>
       </button>
     </div>
-    <div class="col-md-3">
-      <button class="card" data-remodal-action="cancel" onclick="addSticker('/image/demo_sticker/e.png')">
-        <img class="card-img-top" src="/image/demo_sticker/e.png" alt="Demo E">
-        <div class="card-body p-2">
-          <p class="card-title m-1">Sticker "E"</p>
-        </div>
-      </button>
-    </div>
-    <div class="col-md-3">
-      <button class="card" data-remodal-action="cancel" onclick="addSticker('/image/demo_sticker/m.png')">
-        <img class="card-img-top" src="/image/demo_sticker/m.png" alt="Demo M">
-        <div class="card-body p-2">
-          <p class="card-title m-1">Sticker "M"</p>
-        </div>
-      </button>
-    </div>
-    <div class="col-md-3">
-      <button class="card" data-remodal-action="cancel" onclick="addSticker('/image/demo_sticker/o.png')">
-        <img class="card-img-top" src="/image/demo_sticker/o.png" alt="Demo O">
-        <div class="card-body p-2">
-          <p class="card-title m-1">Sticker "O"</p>
-        </div>
-      </button>
-    </div>
+    @endforeach
   </div>
   <button data-remodal-action="cancel" class="remodal-cancel">Close</button>
 </div>

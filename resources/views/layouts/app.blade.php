@@ -37,7 +37,7 @@
 
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item"><a class="nav-link" href="/design/list">Designs</a></li>
+          <li class="nav-item"><a class="nav-link" href="/design/">Designs</a></li>
           @if ( !Auth::guest() )
             <li class="nav-item"><a class="nav-link" href="/design/create">Create</a></li>
           @endif
