@@ -11,9 +11,9 @@
         @if( $loop->index == 0 || $loop->index % 2 == 0 )
           <div class="row">
         @endif
-            <div class="col-md-6" style="padding: 20px;">
-              <img width="70%" src="/stickers/{{ $sticker->file_name }}.{{ $sticker->extension }}">
-              <div class="row" style="padding: 10px;">
+            <div class="col-md-6">
+              <img width="70%" src="/image/sticker/{{ $sticker->file_name }}.{{ $sticker->extension }}">
+              <div class="row">
                 <div class="col-md-6">
                   <h4>{{ $sticker->created_at->format('Y-m-d') }}</h4>
                 </div>

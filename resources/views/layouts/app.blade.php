@@ -13,9 +13,10 @@
   <!-- Styles -->
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/original.css">
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css">
+  <link rel="stylesheet" href="/css/create.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
   @yield('sticker_css')
 
   <!-- Scripts -->
@@ -26,83 +27,58 @@
   </script>
 </head>
 <body>
-  <div id="app">
-    <nav class="navbar navbar-default navbar-fixed-top" style="">
-      <div class="container">
-        <div class="navbar-header">
+<header>
+  <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/">{{ config('app.name', 'MyMacMate') }}</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-          <!-- Collapsed Hamburger -->
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-            <span class="sr-only">Toggle Navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-
-          <!-- Branding Image -->
-          <a class="navbar-brand" href="/">
-            {{ config('app.name', 'MyMacMate') }}
-          </a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="app-navbar-collapse">
-          <!-- Left Side Of Navbar -->
-          <ul class="nav navbar-nav">
-          @if(Auth::check() && Route::currentRouteName() != 'design.create')
-            {{-- Login state  --}}
-            <li><a href="/design">Sticker Designs</a></li>
-            <li><a href="/sticker">Stickers</a></li>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="/design/list">Designs</a></li>
+          @if ( !Auth::guest() )
+            <li class="nav-item"><a class="nav-link" href="/design/create">Create</a></li>
           @endif
-          </ul>
-          <ul class="nav navbar-nav" style="padding-top: 7px;">
-            @yield('create_navbar')
-          </ul>
+          @yield('create_navbar')
+        </ul>
 
-          <!-- Right Side Of Navbar -->
-          <ul class="nav navbar-nav navbar-right">
+        <ul class="navbar-nav">
+          <!-- Authentication Links -->
+          @if ( Auth::guest() )
+            {{-- Guest state  --}}
+            <li class="nav-item"><a class="nav-link" href="/login">Sign in</a></li>
+            <li class="nav-item"><a class="nav-link btn btn-primary" href="/register">Sign up</a></li>
+          @else
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }}</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/sticker">My Sticker</a>
+              <a class="dropdown-item" href="/design/my">My Designs</a>
+              <a class="dropdown-item" href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+              <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                {{ csrf_field() }}
+              </form>
+            </div>
+          </li>
+          @endif
+        </ul>
 
-            <!-- Authentication Links -->
-            @if (Auth::guest())
-              {{-- Guest state  --}}
-              <li><a href="/design/other">Other Designs</a></li>
-              <li><a href="/login">Sign in</a></li>
-              <li><a href="/register">sign up</a></li>
-            @else
-              {{-- Login state  --}}
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                  {{ Auth::user()->name }} <span class="caret"></span>
-                </a>
-
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="/register">Other Designs</a></li>
-                  <li>
-                    <a href="/logout"
-                      onclick="event.preventDefault();
-                           document.getElementById('logout-form').submit();">
-                      Logout
-                    </a>
-
-                    <form id="logout-form" action="/logout" method="POST" style="display: none;">
-                      {{ csrf_field() }}
-                    </form>
-                  </li>
-                </ul>
-              </li>
-            @endif
-          </ul>
-        </div>
       </div>
-    </nav>
-    <div style="height:70px;"></div>
-    @yield('content')
-  </div>
+    </div>
+  </nav>
+</header>
+<div style="height:70px;"></div>
 
-  <footer class="footer">
-    <center><p class="text-muted"><a href="https://twitter.com/motikan2010" target="_blank">@motikan2010</a> 2014-</p></center>
-  </footer>
-  <!-- Scripts -->
-  <script src="/js/app.js"></script>
-  @yield('javascript')
+@yield('content')
+
+<footer class="footer">
+  <center><p class="text-muted"><a href="https://twitter.com/motikan2010" target="_blank">@motikan2010</a> 2014-</p></center>
+</footer>
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+@yield('javascript')
 </body>
 </html>

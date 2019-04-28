@@ -2,10 +2,9 @@
 /public/storage
 /public/hot
 
-/public/stickers/*
-!README.md
-/public/products/*
-!README.md
+public/image/product/*
+public/image/sticker/*
+!keep
 
 /resources/views/layouts/analytics.blade.php
 
@@ -16,4 +15,3 @@ Homestead.json
 Homestead.yaml
 .env
 .DS_Store
-g
