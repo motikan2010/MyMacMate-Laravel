@@ -14,7 +14,7 @@ class DesignController extends Controller
     private $designService;
 
     public function __construct(DesignService $designService){
-        $this->middleware('auth')->except(['showAll']);
+        $this->middleware('auth')->except(['index']);
         $this->designService = $designService;
     }
 
