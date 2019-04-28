@@ -4,7 +4,7 @@
 
 public/image/product/*
 public/image/sticker/*
-!keep
+!.keep
 
 /resources/views/layouts/analytics.blade.php
 
