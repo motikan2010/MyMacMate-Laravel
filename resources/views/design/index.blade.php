@@ -12,7 +12,7 @@
           <div class="row">
         @endif
             <div class="col-md-6" style="padding: 20px;">
-              <img width="100%" src="/products/{{ $product->file_name }}.png">
+              <img width="100%" src="/images/products/{{ $product->file_name }}.png">
               <h4>{{ $product->created_at->format('Y-m-d') }}</h4>
             </div>
         @if($loop->index == 1 || $loop->index % 2 == 1)

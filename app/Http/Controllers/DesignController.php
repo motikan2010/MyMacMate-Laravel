@@ -14,7 +14,7 @@ class DesignController extends Controller
     private $designService;
 
     public function __construct(DesignService $designService){
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['showAll']);
         $this->designService = $designService;
     }
 
@@ -26,6 +26,34 @@ class DesignController extends Controller
         $products = Auth::user()->products;
 
         return view('design.index')->with('products', $products);
+    }
+
+    /**
+     * @return View
+     */
+    public function showAll()
+    {
+        $products = Product::where('private_flag', false)->orderBy('created_at', 'desc')->get();
+
+        $data = [
+            'products' => $products,
+        ];
+
+        return view('design.list')->with($data);
+    }
+
+    /**
+     * @return View
+     */
+    public function showMyAll()
+    {
+        $products = Product::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+
+        $data = [
+            'products' => $products,
+        ];
+
+        return view('design.my_list')->with($data);
     }
 
     /**

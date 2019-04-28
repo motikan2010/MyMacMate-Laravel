@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Auth::routes();
@@ -21,7 +21,8 @@ Route::get('/home', 'HomeController@index');
 
 Route::resource('sticker', 'StickerController');
 
-Route::get('/design/other', 'PublicController@showAll');
+Route::get('/design/list', 'DesignController@showAll');
+Route::get('/design/my', 'DesignController@showMyAll');
 Route::resource('design', 'DesignController');
 
 Route::get('twitter/login', 'Auth\TwitterAuthController@login');

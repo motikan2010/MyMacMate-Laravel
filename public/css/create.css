@@ -1,0 +1,5 @@
+#input-canvas {
+    background: url('/image/base.jpg') left top no-repeat;
+    background-size:contain;
+    width: 100%;
+}
