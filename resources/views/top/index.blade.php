@@ -39,7 +39,7 @@
   <div class="row pb-1">
     @foreach($stickers as $sticker)
     <div class="col-md-3">
-      <button class="card" data-remodal-action="cancel" onclick="addSticker('/image/demo_sticker/d.png')">
+      <button class="card" data-remodal-action="cancel" onclick="addSticker('/image/demo_sticker/{{ $sticker[0] }}.png')">
         <img class="card-img-top" src="/image/demo_sticker/{{ $sticker[0] }}.png" alt="Demo D">
         <div class="card-body p-2">
           <p class="card-title m-1">{{ $sticker[1] }}</p>
