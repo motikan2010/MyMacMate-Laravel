@@ -31,11 +31,11 @@
   <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="/">{{ config('app.name', 'MyMacMate') }}</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse">
+      <div  id="collapse" class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item"><a class="nav-link" href="/design/">Designs</a></li>
           @if ( !Auth::guest() )

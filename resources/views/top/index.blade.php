@@ -9,27 +9,39 @@
   </li>
 @endsection
 
+@section('create_navbar')
+  <li class="dropdown">
+    <button class="btn btn-info" onclick="selectSticker()">Select Image</button>
+    <button class="btn btn-warning" onclick="deleteSticker()">Delete</button>
+    <button class="btn btn-success" onclick="confirmSaveImage()">Save</button>
+    <button class="btn btn-danger" onclick="resetSticker()">Reset</button>
+  </li>
+@endsection
+
 @section('content')
 <div class="container">
-  <div class="row">
-    <div class="col-md-6 video_box">
-      <center>
-        <h3>How to "Make Sticker Design"</h3>
-        <iframe src="//player.vimeo.com/video/94033871?title=0&amp;byline=0&amp;portrait=0" width="550" height="308" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
-        <p><a href="http://vimeo.com/94033871">My-Mac-Mate_01_2014/05/06</a> from <a href="http://vimeo.com/user25159137">@motikan2010</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
-      </center>
-    </div>
-    <div class="col-md-6 video_box">
-      <center>
-        <h3>How to "Add Sticker"</h3>
-        <iframe src="//player.vimeo.com/video/94049360?title=0&amp;byline=0&amp;portrait=0" width="550" height="308" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
-        <p><a href="http://vimeo.com/94049360">My-Mac-Mate_02_2014/05/06</a> from <a href="http://vimeo.com/user25159137">@motikan2010</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
-      </center>
-    </div>
-  </div>
-  <div class="row">
-    <div class="mx-auto center-block">
-      <div id="input-canvas" class="center-block"></div>
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-6">
+          <h5>How to "Make Sticker Design"</h5>
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="//player.vimeo.com/video/94033871?title=0&amp;byline=0&amp;portrait=0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+          </div>
+          <p><a href="http://vimeo.com/94033871">My-Mac-Mate_01_2014/05/06</a> from <a href="http://vimeo.com/user25159137">@motikan2010</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+        </div>
+        <div class="col-md-6">
+          <h5>How to "Add Sticker"</h5>
+          <div  class="embed-responsive embed-responsive-16by9">
+            <iframe src="//player.vimeo.com/video/94049360?title=0&amp;byline=0&amp;portrait=0" width="100%" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+          </div>
+          <p><a href="http://vimeo.com/94049360">My-Mac-Mate_02_2014/05/06</a> from <a href="http://vimeo.com/user25159137">@motikan2010</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mx-auto center-block">
+          <div id="input-canvas" class="center-block"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
