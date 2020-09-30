@@ -6,7 +6,6 @@
       <aside class="col-md-4 offset-md-4">
         <div class="card">
           <article class="card-body">
-            <a href="/register" class="float-right btn btn-outline-primary">Sign up</a>
             <h4 class="card-title mb-4 mt-1">Sign in</h4>
             <p>
               <a href="/twitter/auth" class="btn btn-block btn-outline-info"> <i class="fab fa-twitter"></i> Sign in with Twitter</a>

@@ -20,23 +20,28 @@
 
 @section('content')
 <div class="container">
-    <div class="col-md-12">
-      <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <h5 class="card-header">Tutorial Movie</h5>
+      <div class="row p-3">
         <div class="col-md-6">
-          <h5>How to "Make Sticker Design"</h5>
+          <h5>1. Make Sticker Design</h5>
           <div class="embed-responsive embed-responsive-16by9">
             <iframe class="embed-responsive-item" src="//player.vimeo.com/video/94033871?title=0&amp;byline=0&amp;portrait=0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
           </div>
           <p><a href="http://vimeo.com/94033871">My-Mac-Mate_01_2014/05/06</a> from <a href="http://vimeo.com/user25159137">@motikan2010</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
         </div>
         <div class="col-md-6">
-          <h5>How to "Add Sticker"</h5>
+          <h5>2. Add Sticker</h5>
           <div  class="embed-responsive embed-responsive-16by9">
             <iframe src="//player.vimeo.com/video/94049360?title=0&amp;byline=0&amp;portrait=0" width="100%" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
           </div>
           <p><a href="http://vimeo.com/94049360">My-Mac-Mate_02_2014/05/06</a> from <a href="http://vimeo.com/user25159137">@motikan2010</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
         </div>
       </div>
+    </div>
+    <div class="card mt-2">
+      <h5 class="card-header">Demo</h5>
       <div class="row">
         <div class="mx-auto center-block">
           <div id="input-canvas" class="center-block"></div>
@@ -67,7 +72,7 @@
 <div class="remodal-bg"></div>
 <div class="remodal" data-remodal-id="modal">
   <div id="output_screen">
-    <img width="100%" height="100%" id="screen-image">
+    <img width="100%" height="100%" id="screen-image" />
   </div>
   <button  data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
   <a id="download" class="remodal-confirm" href="#" download="mymacmate.png">Loading...</a>
